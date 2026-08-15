@@ -14,6 +14,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SmartLoggerTest {
 
+	 static {
+	        System.setProperty(
+	                "smart.logger.file.dir",
+	                "target/test-logs"
+	        );
+	    }
+
+	 
     private static final Path LOG_FILE = Path.of("target/test-logs/Automation.log");
 
     @AfterEach
