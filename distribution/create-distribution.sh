@@ -42,9 +42,9 @@ mvn -q -f "$PROJECT_ROOT/pom.xml" package -DskipTests
 echo "==> Copying distribution files"
 cp "$PROJECT_ROOT/pom.xml" "$STAGE/"
 cp "$PROJECT_ROOT/README.md" "$STAGE/"
-cp "$PROJECT_ROOT/readTechnicalStructure.md" "$STAGE/"
+cp "$PROJECT_ROOT/document/readTechnicalStructure.md" "$STAGE/"
 cp "$PROJECT_ROOT/CLIENT-DEPENDENCY.xml" "$STAGE/"
-cp "$PROJECT_ROOT/PUBLISHING.md" "$STAGE/"
+cp "$PROJECT_ROOT/document/PUBLISHING.md" "$STAGE/"
 
 mkdir -p "$STAGE/src"
 cp -R "$PROJECT_ROOT/src/main" "$STAGE/src/"
