@@ -1,0 +1,6 @@
+<!-- Maven dependency for Smart Logger 0.3.4 -->
+<dependency>
+    <groupId>com.qaverse.smart</groupId>
+    <artifactId>smart-logger</artifactId>
+    <version>0.3.4</version>
+</dependency>

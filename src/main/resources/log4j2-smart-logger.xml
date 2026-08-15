@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="0">
+    <Properties>
+        <Property name="basePath">${sys:smart.logger.file.dir:-./Logs}</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="SmartConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{HH:mm:ss.SSS}] [%t] %-5level %msg%n"/>
+        </Console>
+
+        <RollingFile name="SmartFile"
+                     fileName="${basePath}/Automation.log"
+                     filePattern="${basePath}/automation-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="smart.console" level="TRACE" additivity="false">
+            <AppenderRef ref="SmartConsole"/>
+        </Logger>
+        <Logger name="smart.file" level="TRACE" additivity="false">
+            <AppenderRef ref="SmartFile"/>
+        </Logger>
+        <Root level="OFF"/>
+    </Loggers>
+</Configuration>
