@@ -1,16 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
-        <groupId>com.qaverse.smart</groupId>
+    <!-- ============================================================
+         Project Coordinates
+         ============================================================ -->
+    <groupId>com.qaverse.smart</groupId>
     <artifactId>smart-logger</artifactId>
     <version>0.3.4</version>
-    <name>Smart Logger</name>
-    <description>Low-friction, centrally controlled logging foundation for the Smart automation ecosystem.</description>
 
-    <!-- Maven Central metadata: set these before the first public release. -->
+    <packaging>jar</packaging>
+
+    <name>Smart Logger</name>
+    <description>
+        Low-friction, centrally controlled logging foundation for the Qaverse
+        Smart automation ecosystem.
+    </description>
+
     <url>https://github.com/koirisanjiv/smart-logger</url>
+
+    <!-- ============================================================
+         Project Metadata
+         ============================================================ -->
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -18,83 +32,166 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+
     <developers>
         <developer>
             <name>Qaverse</name>
         </developer>
     </developers>
+
     <scm>
-        <connection>scm:git:git://github.com/koirisanjiv/smart-logger.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/koirisanjiv/smart-logger.git</developerConnection>
+        <connection>
+            scm:git:git://github.com/koirisanjiv/smart-logger.git
+        </connection>
+        <developerConnection>
+            scm:git:ssh://git@github.com/koirisanjiv/smart-logger.git
+        </developerConnection>
         <url>https://github.com/koirisanjiv/smart-logger</url>
         <tag>HEAD</tag>
     </scm>
 
+    <!-- ============================================================
+         Build Properties
+         ============================================================ -->
     <properties>
+
+        <!-- Java -->
         <maven.compiler.release>21</maven.compiler.release>
+
+        <!-- Maven plugins -->
         <maven.compiler.version>3.13.0</maven.compiler.version>
         <maven.surefire.version>3.5.3</maven.surefire.version>
-        <junit.version>5.11.0</junit.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.jar.version>3.4.2</maven.jar.version>
         <maven.source.version>3.4.0</maven.source.version>
         <maven.javadoc.version>3.12.0</maven.javadoc.version>
-        <maven.gpg.version>3.2.8</maven.gpg.version>
-        <central.publishing.version>0.9.0</central.publishing.version>
+
+        <!-- Testing -->
+        <junit.version>5.11.0</junit.version>
+
+        <!-- Encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
     </properties>
 
+    <!-- ============================================================
+         GitHub Packages
+         
+         `mvn deploy` publishes the production JAR here.
 
+         Authentication is configured separately in:
+             ~/.m2/settings.xml
+
+         using server id:
+             github
+         ============================================================ -->
+    <distributionManagement>
+
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>
+                https://maven.pkg.github.com/koirisanjiv/smart-logger
+            </url>
+        </repository>
+
+    </distributionManagement>
+
+    <!-- ============================================================
+         Dependencies
+         ============================================================ -->
     <dependencies>
+
+        <!-- Log4j2 API -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>2.26.1</version>
         </dependency>
+
+        <!-- Log4j2 Core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.26.1</version>
         </dependency>
+
+        <!-- Unit Tests -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
+    <!-- ============================================================
+         Build
+         ============================================================ -->
     <build>
+
         <plugins>
+
+            <!-- Java 21 compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
+
                 <configuration>
                     <release>${maven.compiler.release}</release>
                 </configuration>
             </plugin>
+
+            <!-- Unit tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.version}</version>
             </plugin>
+
+            <!-- JAR creation -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.version}</version>
+            </plugin>
+
         </plugins>
+
     </build>
 
-    <!--
-      Maven Central release profile.
-      Normal development (`mvn clean test`) does NOT require GPG or Central credentials.
-      Publishing is explicit: `mvn -Prelease clean deploy`.
-    -->
+    <!-- ============================================================
+         Release Profile
+         
+         Normal:
+             mvn clean test
+             mvn clean deploy
+
+         Optional release artifacts:
+             mvn -Prelease clean deploy
+
+         The release profile adds:
+             - sources JAR
+             - javadoc JAR
+         ============================================================ -->
     <profiles>
+
         <profile>
+
             <id>release</id>
+
             <build>
+
                 <plugins>
+
+                    <!-- Sources JAR -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
                         <version>${maven.source.version}</version>
+
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -104,15 +201,19 @@
                                 </goals>
                             </execution>
                         </executions>
+
                     </plugin>
 
+                    <!-- Javadoc JAR -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven.javadoc.version}</version>
+
                         <configuration>
                             <doclint>none</doclint>
                         </configuration>
+
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -122,37 +223,15 @@
                                 </goals>
                             </execution>
                         </executions>
+
                     </plugin>
 
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>${maven.gpg.version}</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <plugin>
-                        <groupId>org.sonatype.central</groupId>
-                        <artifactId>central-publishing-maven-plugin</artifactId>
-                        <version>${central.publishing.version}</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <publishingServerId>central</publishingServerId>
-                            <autoPublish>true</autoPublish>
-                            <waitUntil>published</waitUntil>
-                        </configuration>
-                    </plugin>
                 </plugins>
+
             </build>
+
         </profile>
+
     </profiles>
 
 </project>
