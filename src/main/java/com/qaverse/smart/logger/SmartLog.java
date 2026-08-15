@@ -110,4 +110,13 @@ public final class SmartLog {
 		}
 		error(messageSupplier.get());
 	}
+	
+	public static void error(Supplier<String> messageSupplier, Throwable throwable) {
+
+	    if (messageSupplier == null || !SmartLogger.isEnabled(SmartLogLevel.ERROR)) {
+	        return;
+	    }
+
+	    error(messageSupplier.get(), throwable);
+	}
 }

@@ -8,7 +8,7 @@
     <!-- ============================================================
          Project Coordinates
          ============================================================ -->
-    <groupId>com.qaverse.smart</groupId>
+    <groupId>com.qaverse</groupId>
     <artifactId>smart-logger</artifactId>
     <version>1.0.1</version>
 
