@@ -10,7 +10,7 @@
     <description>Low-friction, centrally controlled logging foundation for the Smart automation ecosystem.</description>
 
     <!-- Maven Central metadata: set these before the first public release. -->
-    <url>https://github.com/REPLACE_WITH_YOUR_GITHUB_OWNER/smart-logger</url>
+    <url>https://github.com/koirisanjiv/smart-logger</url>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -24,9 +24,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git://github.com/REPLACE_WITH_YOUR_GITHUB_OWNER/smart-logger.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/REPLACE_WITH_YOUR_GITHUB_OWNER/smart-logger.git</developerConnection>
-        <url>https://github.com/REPLACE_WITH_YOUR_GITHUB_OWNER/smart-logger</url>
+        <connection>scm:git:git://github.com/koirisanjiv/smart-logger.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/koirisanjiv/smart-logger.git</developerConnection>
+        <url>https://github.com/koirisanjiv/smart-logger</url>
         <tag>HEAD</tag>
     </scm>
 

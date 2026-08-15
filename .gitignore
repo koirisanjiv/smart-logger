@@ -1,2 +1,3 @@
 target/ distribution/.stage/ distribution/*.zip *.log Logs/ .classpath .project
 .settings/
+/target/
