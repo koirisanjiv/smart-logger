@@ -46,7 +46,7 @@ mvn -q versions:set -DnewVersion="$NEW_VERSION" -DgenerateBackupPoms=false
 mvn -q clean test
 ./distribution/create-distribution.sh "$NEW_VERSION"
 
-git add pom.xml README.md readTechnicalStructure.md PUBLISHING.md CLIENT-DEPENDENCY.xml distribution .github .gitignore
+git add pom.xml README.md document/readTechnicalStructure.md document/PUBLISHING.md CLIENT-DEPENDENCY.xml distribution .github .gitignore
 git commit -m "Release Smart Logger $NEW_VERSION"
 git tag -a "v$NEW_VERSION" -m "Smart Logger $NEW_VERSION"
 
